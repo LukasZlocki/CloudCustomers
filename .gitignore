@@ -1,0 +1,7 @@
+.vs/
+.vscode/
+CloudCustomers.API/bin/
+CloudCustomers.API/obj/
+CloudCustomers.UnitTests/bin/
+CloudCustomers.UnitTests/obj/
+
