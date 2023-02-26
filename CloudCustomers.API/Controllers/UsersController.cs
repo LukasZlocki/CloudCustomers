@@ -17,6 +17,6 @@ public class UsersController : ControllerBase
     [HttpGet(Name = "GetUsers")]
     public async Task<IActionResult> Get()
     {
-        return null;
+        return Ok("all ok");
     }
 }
