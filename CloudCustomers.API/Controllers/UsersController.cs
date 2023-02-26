@@ -9,9 +9,9 @@ public class UsersController : ControllerBase
 
     private readonly ILogger<UsersController> _logger;
 
-    publicUsersControllerr(ILogger<UsersController> logger)
+    public UsersController()
     {
-        _logger = logger;
+        
     }
 
     [HttpGet(Name = "GetUsers")]
