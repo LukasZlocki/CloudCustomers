@@ -16,8 +16,22 @@ public class TestUsersController
         var mockUsersService = new Mock<IUsersService>();
         mockUsersService
             .Setup(service => service.GetAllUsers())
-            .ReturnsAsync(new List<User>());
-       
+            .ReturnsAsync(new List<User>()
+            {
+                new()
+                {
+                    Id = 1,
+                    Name = "Jane",
+                    Address = new Address
+                    {
+                        Street = "54 streer name",
+                        City = "city_name",
+                        ZipCode = "451078"
+                    },
+                    Email = "jane@ab.ab"
+                }
+            });
+
         var sut = new UsersController(mockUsersService.Object);
 
         // Act
@@ -56,7 +70,21 @@ public class TestUsersController
         var mockUsersService = new Mock<IUsersService>();
         mockUsersService
             .Setup(service => service.GetAllUsers())
-            .ReturnsAsync(new List<User>());
+            .ReturnsAsync(new List<User>()
+            {
+                new()
+                {
+                    Id = 1,
+                    Name = "Jane",
+                    Address = new Address
+                    {
+                        Street = "54 streer name",
+                        City = "city_name",
+                        ZipCode = "451078"
+                    },
+                    Email = "jane@ab.ab"
+                } 
+            });
 
         var sut = new UsersController(mockUsersService.Object);
 
@@ -85,7 +113,9 @@ public class TestUsersController
 
         // Assert
         result.Should().BeOfType<NotFoundResult>();
-
+        var objectResult = (NotFoundResult)result;
+        objectResult.StatusCode.Should().Be(404);
     }
 
+  
 }
