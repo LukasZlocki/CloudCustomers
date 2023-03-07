@@ -38,7 +38,7 @@ namespace CloudCustomers.UnitTests.Systems.Services
         {
             // Arrange
             var expectedResponse = UsersFixture.GetTestUsers();
-            var handlerMock = MockHttpMessageHandler<User>.SetupBasicGetResourceList(expectedResponse);
+            var handlerMock = MockHttpMessageHandler<User>.SetupReturn404();
             var httpClient = new HttpClient(handlerMock.Object);
             var sut = new UsersService(httpClient);
 
@@ -46,7 +46,7 @@ namespace CloudCustomers.UnitTests.Systems.Services
             var result = await sut.GetAllUsers();
 
             // Assert
-            result.Should().BeOfType<List<User>>();
+            result.Count.Should().Be(0);
 
 
         }
