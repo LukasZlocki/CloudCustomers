@@ -1,4 +1,5 @@
 ﻿
+using CloudCustomers.API.Config;
 using CloudCustomers.API.Models;
 using CloudCustomers.API.Services;
 using CloudCustomers.UnitTests.Fixtures;
@@ -87,7 +88,12 @@ namespace CloudCustomers.UnitTests.Systems.Services
             var result = await sut.GetAllUsers();
 
             // Assert
-            result.Count.Should().Be(expectedResponse.Count);
+            handlerMock
+               .Protected()
+               .Verify("SendAsync", Times.Exactly(1),
+               ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get && req.RequestUri.ToString() == endpoint),
+               ItExpr.IsAny<CancellationToken>()
+               );
         }
 
 
