@@ -25,7 +25,7 @@ namespace CloudCustomers.UnitTests.Help
 
             }
 
-        internal static object SetupBasicGetResourceList(List<User> expectedResponse, string enpoint)
+        internal static Mock<HttpMessageHandler> SetupBasicGetResourceList(List<User> expectedResponse, string enpoint)
         {
             var mockResponse = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
             {
