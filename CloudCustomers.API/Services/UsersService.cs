@@ -23,7 +23,7 @@ namespace CloudCustomers.API.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-            var usersResponse = await _httpClient.GetAsync("https://example.com");
+            var usersResponse = await _httpClient.GetAsync(_apiConfig.Endpoint);
             if (usersResponse.StatusCode == System.Net.HttpStatusCode.NotFound) 
             {
                 return new List<User>();

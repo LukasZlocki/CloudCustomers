@@ -101,6 +101,7 @@ namespace CloudCustomers.UnitTests.Systems.Services
                 });
 
             var sut = new UsersService(httpClient, config);
+            var uri = new Uri(endpoint);
 
             // Act
             var result = await sut.GetAllUsers();
@@ -109,7 +110,7 @@ namespace CloudCustomers.UnitTests.Systems.Services
             handlerMock
                .Protected()
                .Verify("SendAsync", Times.Exactly(1),
-               ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get && req.RequestUri.ToString() == endpoint),
+               ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get && req.RequestUri == uri),
                ItExpr.IsAny<CancellationToken>()
                );
         }

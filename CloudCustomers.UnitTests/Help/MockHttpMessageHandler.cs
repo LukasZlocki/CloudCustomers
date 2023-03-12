@@ -36,16 +36,9 @@ namespace CloudCustomers.UnitTests.Help
             
             var handlerMock = new Mock<HttpMessageHandler>();
 
-            var httpRequestMessage = new HttpRequestMessage
-            {
-                RequestUri = new Uri(enpoint),
-                Method = HttpMethod.Get
-
-            };
-
             handlerMock.Protected().Setup<Task<HttpResponseMessage>>(
                 "SendAsync", 
-                httpRequestMessage, 
+                ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(mockResponse);
 
